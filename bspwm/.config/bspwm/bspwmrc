@@ -1,0 +1,87 @@
+#! /bin/sh
+
+bspc config border_width        0
+bspc config window_gap         18
+
+bspc config normal_border_color "#000000"
+bspc config focused_border_color "#000000"
+bspc config active_border_color "#000000"
+bspc config presel_feedback_color "#000000"
+bspc config focused_locked_border_color "#000000"
+bspc config active_locked_border_color "#000000"
+bspc config normal_locked_border_color "#000000"
+bspc config focused_sticky_border_color "#000000"
+bspc config active_sticky_border_color "#000000"
+bspc config normal_sticky_border_color "#000000"
+bspc config focused_private_border_color "#000000"
+bspc config active_private_border_color "#000000"
+bspc config normal_private_border_color "#000000"
+bspc config urgent_border_color "#000000"
+
+#bspc config split_ratio         0.62
+bspc config split_ratio         0.6
+bspc config borderless_monocle  true
+bspc config gapless_monocle     true
+bspc config focus_by_distance   true
+bspc config click_to_focus      true
+
+bspc monitor -d I II III
+
+export _JAVA_AWT_WM_NONREPARENTING=1
+export _JAVA_OPTIONS='-Dsun.java2d.opengl=true'
+
+bspc rule -a streaming_client desktop=5
+bspc rule -a discord desktop=7
+bspc rule -a Wrapper-1.0 border=off center=off
+bspc rule -a Panther_launcher border=off center=off state=floating
+bspc rule -a "PVP.net Client" border=off
+bspc rule -a Pamac-updater state=floating
+bspc rule -a Wine border=off
+
+bspc config external_rules_command '~/.config/bspwm/external_rules.sh'
+
+bspc config top_padding 0 
+#bspc config bottom_padding 40
+bspc config bottom_padding 0
+
+# Autostart
+# xrandr --output HDMI-0 --primary --auto --output DVI-I-0 --auto --right-of HDMI-0 &
+sxhkd &
+feh --bg-scale '/home/robert/Pictures/wallfab.jpg' &
+
+polybar main &
+
+#sh panel.sh &
+#(cd /home/robert/.config/bspwm/ && exec ./panel.sh &)
+(cd /home/robert/.config/bspwm/ && exec ./blurdesktop.sh &)
+
+xset s off &
+xset dpms 36000 36000 36000 &
+xsetroot -xcf /usr/share/icons/Adwaita/cursors/left_ptr 24 &
+xinput set-prop 9 135 1.600000, 0.000000, 0.000000, 0.000000, 1.600000, 0.000000, 0.000000, 0.000000, 1.000000 &
+
+compton --backend glx --unredir-if-possible &
+
+#bspc desktop -f 1 &
+
+#~/.config/bspwm/titlebars.sh &
+#~/.config/bspwm/adjust_gaps.sh &
+
+#~/.config/bspwm/taskbar.sh &
+#~/dotfiles/config/bspwm/bar_parser.sh &
+
+lxsession &
+
+#~/dotfiles/config/bspwm/taskbar.sh &
+echo "/home/robert" > /tmp/wmdirectory &
+#tint2 &
+#nm-applet & sleep 0.2 && pa-applet & sleep 0.2 && sudo -E pamac-tray &
+redshift &
+unclutter &
+#dropbox start &
+#discord-canary &
+#linconnect-server &
+#sleep 3 && stalonetray -t --grow-gravity E --geometry 1x1+2472-3 --icon-gravity E -s 26 -i 16 --scrollbars horizontal --max-geometry 10x1 --kludges force_icons_size &
+#xfce4-panel -d & sleep 5 && xdotool windowunmap $(xdotool search xfce4-panel|tail -1) &
+#panther_launcher -s &
+#sleep 3 && xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n 1)" $(xdo id -n tint2) &
