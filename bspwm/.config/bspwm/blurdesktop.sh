@@ -4,7 +4,7 @@ blur=false
 
 while read line
 do
-	if [[ "$line" == *F* ]]; then
+	if [[ "$line" ==  *FI* ]]; then
 		if [ "$blur" = true ]; then
 			feh --bg-scale "/home/robert/Pictures/wallfab.jpg"
 			blur=false
