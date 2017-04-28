@@ -1,6 +1,6 @@
 #!/bin/bash
 
-blur=false 
+blur=false #this blur variable is so we don't have to set the background every round
 
 while read line
 do
